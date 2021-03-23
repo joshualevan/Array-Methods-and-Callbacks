@@ -120,12 +120,16 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals( /* code here */ ) {
-    /* code here */
+function getAverageGoals(sportArr, getFinalsCB) {
+
+    let finals = getFinalsCB(sportArr);
+    let homeAverage = finals.map(game => game["Home Team Goals"]).reduce((total, score) => total + score) / finals.length;
+    let awayAverage = finals.map(game => game["Away Team Goals"]).reduce((total, score) => total + score) / finals.length;
+
+    return `Home Average: ${homeAverage.toFixed(2)} - Away Average ${awayAverage.toFixed(2)}`;
 }
 
-
-
+console.log(getAverageGoals(fifaData, getFinals))
 
 /// 🥅 STRETCH 🥅 ///
 
