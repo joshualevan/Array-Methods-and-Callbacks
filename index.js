@@ -15,6 +15,7 @@ Practice accessing data by console.log-ing the following pieces of data note, yo
 
 //(e) Winner of 2014 world cup final */
 
+
 let final2014 = fifaData.filter(game => {
     return game["Year"] === 2014 && game["Stage"] === "Final";
 });
@@ -57,7 +58,7 @@ Use the higher-order function called getYears to do the following:
 function getYears(sportArr, getFinalsCB) {
     let years = [];
     getFinalsCB(sportArr).forEach(game => years.push(game["Year"]));
-    return years
+    return years;
 }
 
 
@@ -120,16 +121,17 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(sportArr, getFinalsCB) {
+function getAverageGoals(getFinalsCB) {
 
-    let finals = getFinalsCB(sportArr);
+    let finals = getFinalsCB;
     let homeAverage = finals.map(game => game["Home Team Goals"]).reduce((total, score) => total + score) / finals.length;
     let awayAverage = finals.map(game => game["Away Team Goals"]).reduce((total, score) => total + score) / finals.length;
+    let average = homeAverage + awayAverage;
 
-    return `Home Average: ${homeAverage.toFixed(2)} - Away Average ${awayAverage.toFixed(2)}`;
+    return average.toFixed(2);
 }
 
-console.log(getAverageGoals(fifaData, getFinals))
+console.log(getAverageGoals(getFinals(fifaData)));
 
 /// 🥅 STRETCH 🥅 ///
 
