@@ -21,7 +21,7 @@ let final2014 = fifaData.filter(game => {
 
 final2014.forEach(game => {
     let winner;
-    if (game["Home Team Name"] > game["Away Team Name"]) {
+    if (game["Home Team Goals"] > game["Away Team Goals"]) {
         winner = game["Home Team Name"];
     } else {
         winner = game["Away Team Name"];
@@ -69,8 +69,17 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */
 
-function getWinners( /* code here */ ) {
-    /* code here */
+function getWinners(sportArr, getFinalsCB) {
+    let winners = [];
+    getFinalsCB(sportArr).forEach(game => {
+        if (game["Home Team Goals"] > game["Away Team Goals"]) {
+            winners.push(game["Home Team Name"]);
+        } else {
+            winners.push(game["Away Team Name"]);
+        }
+    });
+
+    return winners;
 }
 
 
